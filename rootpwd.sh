@@ -1,0 +1,1 @@
+docker exec -i gitlab cat /etc/gitlab/initial_root_password |grep ^Password

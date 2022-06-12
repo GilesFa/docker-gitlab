@@ -1,0 +1,18 @@
+gitlab:
+  container_name: gitlab
+  image: 'gitlab/gitlab-ce:latest'
+  restart: always
+  hostname: 'gitlab.example.com'
+  privileged: true
+  environment:
+    GITLAB_OMNIBUS_CONFIG: |
+      external_url "http://${IP}:5678"
+      gitlab_rails['gitlab_shell_ssh_port'] = 2222
+      gitlab_rails['gitlab_ssh_host'] = "http://${IP}"
+  ports:
+    - '5678:5678'
+    - '2222:22'
+  volumes:
+    - './config:/etc/gitlab'
+    - './logs:/var/log/gitlab'
+    - './data:/var/opt/gitlab'
