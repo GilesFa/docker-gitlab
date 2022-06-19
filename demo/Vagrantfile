@@ -1,0 +1,15 @@
+host_list = [
+    {
+        :name => "host1",
+        :box => "geerlingguy/centos7"
+    }
+]
+
+Vagrant.configure("2") do |config|
+
+    host_list.each do |item|
+        config.vm.define item[:name] do |host|
+            host.vm.box = item[:box]
+        end
+    end
+end
